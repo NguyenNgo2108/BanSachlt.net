@@ -26,3 +26,4 @@ C:\Users\nemol\source\repos\QLNhaSach\QLNhaSach\obj\Debug\net8.0-windows\ref\QLN
 C:\Users\nemol\source\repos\QLNhaSach\QLNhaSach\obj\Debug\net8.0-windows\QLNhaSach.LoaiSach.resources
 C:\Users\nemol\source\repos\QLNhaSach\QLNhaSach\obj\Debug\net8.0-windows\QLNhaSach.Sach.resources
 C:\Users\nemol\source\repos\QLNhaSach\QLNhaSach\obj\Debug\net8.0-windows\QLNhaSach.HoaDon.resources
+C:\Users\nemol\source\repos\QLNhaSach\QLNhaSach\obj\Debug\net8.0-windows\QLNhaSach.sourcelink.json

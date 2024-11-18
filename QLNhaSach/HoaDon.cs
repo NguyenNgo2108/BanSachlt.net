@@ -20,7 +20,7 @@ namespace QLNhaSach
             LoadData();
         }
 
-        private void LoadData()
+        private void LoadData(string maHoaDon = null)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -28,7 +28,18 @@ namespace QLNhaSach
                 {
                     conn.Open();
                     string query = "SELECT * FROM HoaDon";
+
+                    if (!string.IsNullOrEmpty(maHoaDon))
+                    {
+                        query += " WHERE MaHoaDon = @MaHoaDon";
+                    }
+
                     SqlDataAdapter dataAdapter = new SqlDataAdapter(query, conn);
+                    if (!string.IsNullOrEmpty(maHoaDon))
+                    {
+                        dataAdapter.SelectCommand.Parameters.AddWithValue("@MaHoaDon", maHoaDon);
+                    }
+
                     DataTable dataTable = new DataTable();
                     dataAdapter.Fill(dataTable);
                     dataGridView1.DataSource = dataTable;
@@ -125,7 +136,7 @@ namespace QLNhaSach
                     int count = (int)cmd.ExecuteScalar();
                     if (count > 0)
                     {
-                        isExist = true; 
+                        isExist = true;
                     }
                 }
                 catch (Exception ex)
@@ -146,6 +157,11 @@ namespace QLNhaSach
             if (string.IsNullOrEmpty(maHoaDon))
             {
                 MessageBox.Show("Vui lòng chọn mã hóa đơn để sửa.");
+                return;
+            }
+            if (!IsMaKhachHangExist(maKhachHang))
+            {
+                MessageBox.Show("Mã khách hàng không tồn tại. Vui lòng kiểm tra lại.");
                 return;
             }
 
@@ -241,7 +257,16 @@ namespace QLNhaSach
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
+            string maHoaDon = tbMaHoaDon.Text;
 
+            if (!string.IsNullOrEmpty(maHoaDon))
+            {
+                LoadData(maHoaDon);
+            }
+            else
+            {
+                LoadData();
+            }
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
